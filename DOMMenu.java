@@ -11,10 +11,9 @@ import javax.xml.transform.*;       // import DOM source classes
 import org.w3c.dom.*;               // import DOM
 
 /**
- DOM handler to read XML information, to create this, and to print it.
- 
- @author   CSCU9T4, University of Stirling
- @version  11/03/20
+ DOM handler to read XML information, to create this, and to print it
+ @author CSCU9T4, University of Stirling
+ @version 11/03/20
  */
 public class DOMMenu {
 	
@@ -34,8 +33,7 @@ public class DOMMenu {
 	
 	/**
 	 Main program to call DOM parser.
-	 
-	 @param args         command-line arguments
+	 @param args command-line arguments
 	 */
 	public static void main(String[] args)  {
 		// load XML file into "document"
@@ -48,8 +46,7 @@ public class DOMMenu {
 	
 	/**
 	 Set global document by reading the given file.
-	 
-	 @param filename     XML file to read
+	 @param filename XML file to read
 	 */
 	private static void loadDocument(String filename) {
 		try {
@@ -101,9 +98,8 @@ public class DOMMenu {
 	
 	/**
 	 Get result of XPath query.
-	 
-	 @param query        XPath query
-	 @return         result of query
+	 @param query XPath query
+	 @return result of query
 	 */
 	private static String query(String query) {
 		String result = "";

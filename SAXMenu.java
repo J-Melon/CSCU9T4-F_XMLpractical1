@@ -5,19 +5,16 @@ import org.xml.sax.*;
 
 /**
  SAX event handler to:
- 
  1) Show basic event handling while reading an XML file
  2) output in a csv file
- 
- @author 	CSCU9T4 Demo, University of Stirling
- @version  11/03/20
+ @author CSCU9T4 Demo, University of Stirling
+ @version 11/03/20
  */
 public class SAXMenu {
 	
 	/**
 	 Main program to call SAX parser.
-	 
-	 @param args			command-line arguments
+	 @param args command-line arguments
 	 First argument is the name of the xml file to process
 	 */
 	
@@ -27,8 +24,7 @@ public class SAXMenu {
 	
 	/**
 	 Callback when parser finds character data.
-	 
-	 @param filename		XML file to read
+	 @param filename XML file to read
 	 */
 	private static void parse(String filename) {
 		try {
