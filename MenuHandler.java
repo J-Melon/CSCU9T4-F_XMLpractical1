@@ -6,7 +6,8 @@ import org.xml.sax.helpers.*;		// import SAX helper classes
  @author CSCU9T4 Demo, University of Stirling
  @version 11/03/20
  */
-public class MenuHandler extends DefaultHandler {
+public class MenuHandler extends DefaultHandler
+{
 	/**
 	 Callback when parser finds character data.
 	 @param ch character data
@@ -14,7 +15,8 @@ public class MenuHandler extends DefaultHandler {
 	 @param length character count
 	 @throws SAX exception
 	 */
-	public void characters(char ch[], int start, int length) {
+	public void characters(char ch[], int start, int length)
+	{
 		String characters = new String(ch, start, length).trim();
 		if (!characters.isEmpty())
 			System.out.println("  characters '" + characters + "'");
@@ -24,7 +26,8 @@ public class MenuHandler extends DefaultHandler {
 	 Callback when parser finds the end of a document.
 	 @throws SAX exception
 	 */
-	public void endDocument() throws SAXException {
+	public void endDocument() throws SAXException
+	{
 		System.out.println("endDocument callback");
 	}
 	
@@ -36,7 +39,8 @@ public class MenuHandler extends DefaultHandler {
 	 @throws SAX exception
 	 */
 	public void endElement(String namespaceURI, String localName, String qName)
-			throws SAXException {
+			throws SAXException
+	{
 		System.out.println("endElement callback for '" + qName + "' '" + localName +"'");
 	}
 	
@@ -44,7 +48,8 @@ public class MenuHandler extends DefaultHandler {
 	 Callback when parser starts to read a document.
 	 @throws SAX exception
 	 */
-	public void startDocument() throws SAXException {
+	public void startDocument() throws SAXException
+	{
 		System.out.println("startDocument callback");
 	}
 	
@@ -57,12 +62,12 @@ public class MenuHandler extends DefaultHandler {
 	 @throws SAX exception
 	 */
 	public void startElement(String namespaceURI, String localName,
-							 String qName, Attributes attributes) throws SAXException {
+							 String qName, Attributes attributes) throws SAXException
+	{
 		System.out.println("startElement callback for '"  + qName + "'");
 		for (int i = 0; i < attributes.getLength(); i++)
 			System.out.println(
 					"  attribute '" + attributes.getQName(i) +
 							"' is '" + attributes.getValue(i) + "'");
 	}
-	
 }

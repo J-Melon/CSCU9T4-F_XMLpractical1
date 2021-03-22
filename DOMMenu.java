@@ -15,7 +15,8 @@ import org.w3c.dom.*;               // import DOM
  @author CSCU9T4, University of Stirling
  @version 11/03/20
  */
-public class DOMMenu {
+public class DOMMenu
+{
 	
 	/** Document builder */
 	private static DocumentBuilder builder = null;
@@ -35,21 +36,22 @@ public class DOMMenu {
 	 Main program to call DOM parser.
 	 @param args command-line arguments
 	 */
-	public static void main(String[] args)  {
+	public static void main(String[] args)
+	{
 		// load XML file into "document"
 		loadDocument(args[0]);
 		// print staff.xml using DOM methods and XPath queries
 		printNodes();
-		
-		
 	}
 	
 	/**
 	 Set global document by reading the given file.
 	 @param filename XML file to read
 	 */
-	private static void loadDocument(String filename) {
-		try {
+	private static void loadDocument(String filename)
+	{
+		try
+		{
 			// create a document builder
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			builder = builderFactory.newDocumentBuilder();
@@ -61,7 +63,8 @@ public class DOMMenu {
 			// parse the document for later searching
 			document = builder.parse(new File(filename));
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			System.err.println("could not load document " + exception);
 		}
 	}
@@ -71,24 +74,30 @@ public class DOMMenu {
 	 Validate the document given a schema file
 	 @param filename XSD file to read
 	 */
-	private static Boolean validateDocument(String filename)  {
-		try {
+	private static Boolean validateDocument(String filename)
+	{
+		try
+		{
 			String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
 			SchemaFactory factory = SchemaFactory.newInstance(language);
 			schema = factory.newSchema(new File(filename));
 			Validator validator = schema.newValidator();
 			validator.validate(new DOMSource(document));
 			return true;
-		} catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			System.err.println(e);
 			System.err.println("Could not load schema or validate");
 			return false;
 		}
 	}
+	
 	/**
 	 Print nodes using DOM methods and XPath queries.
 	 */
-	private static void printNodes() {
+	private static void printNodes()
+	{
 		Node menuItem_1 = document.getFirstChild();
 		Node menuItem_2 = menuItem_1.getFirstChild().getNextSibling();
 		System.out.println("First child is: " + menuItem_1.getNodeName());
@@ -101,14 +110,18 @@ public class DOMMenu {
 	 @param query XPath query
 	 @return result of query
 	 */
-	private static String query(String query) {
+	private static String query(String query)
+	{
 		String result = "";
-		try {
+		try
+		{
 			result = path.evaluate(query, document);
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			System.err.println("could not perform query - " + exception);
 		}
+		
 		return(result);
 	}
 }

@@ -10,15 +10,16 @@ import org.xml.sax.*;
  @author CSCU9T4 Demo, University of Stirling
  @version 11/03/20
  */
-public class SAXMenu {
-	
+public class SAXMenu
+{
 	/**
 	 Main program to call SAX parser.
 	 @param args command-line arguments
 	 First argument is the name of the xml file to process
 	 */
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		parse(args[0]);
 	}
 	
@@ -26,8 +27,10 @@ public class SAXMenu {
 	 Callback when parser finds character data.
 	 @param filename XML file to read
 	 */
-	private static void parse(String filename) {
-		try {
+	private static void parse(String filename)
+	{
+		try
+		{
 			System.out.println("-------------------");
 			System.out.println("parsing " + filename);
 			System.out.println();
@@ -51,9 +54,9 @@ public class SAXMenu {
 			System.out.println("-------------------");
 			System.out.println();
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			System.err.println("could not parse file - " + exception);
 		}
 	}
-	
 }
