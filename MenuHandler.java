@@ -19,7 +19,9 @@ public class MenuHandler extends DefaultHandler
 	{
 		String characters = new String(ch, start, length).trim();
 		if (!characters.isEmpty())
+		{
 			System.out.println("  characters '" + characters + "'");
+		}
 	}
 	
 	/**
@@ -38,8 +40,7 @@ public class MenuHandler extends DefaultHandler
 	 @param qName qualified name for namespace
 	 @throws SAX exception
 	 */
-	public void endElement(String namespaceURI, String localName, String qName)
-			throws SAXException
+	public void endElement(String namespaceURI, String localName, String qName) throws SAXException
 	{
 		System.out.println("endElement callback for '" + qName + "' '" + localName +"'");
 	}
@@ -61,13 +62,12 @@ public class MenuHandler extends DefaultHandler
 	 @param attributes elements attributes
 	 @throws SAX exception
 	 */
-	public void startElement(String namespaceURI, String localName,
-							 String qName, Attributes attributes) throws SAXException
+	public void startElement(String namespaceURI, String localName, String qName, Attributes attributes) throws SAXException
 	{
 		System.out.println("startElement callback for '"  + qName + "'");
 		for (int i = 0; i < attributes.getLength(); i++)
-			System.out.println(
-					"  attribute '" + attributes.getQName(i) +
-							"' is '" + attributes.getValue(i) + "'");
+		{
+			System.out.println("  attribute '" + attributes.getQName(i) + "' is '" + attributes.getValue(i) + "'");
+		}
 	}
 }
