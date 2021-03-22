@@ -1,14 +1,14 @@
-import java.io.*;               // import input-output
+import java.io.*; //Input-output
 
 import javax.xml.XMLConstants;
-import javax.xml.parsers.*;         // import parsers
+import javax.xml.parsers.*; //Parsers
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.xpath.*;           // import XPath
-import javax.xml.validation.*;      // import validators
-import javax.xml.transform.*;       // import DOM source classes
+import javax.xml.xpath.*; //XPath
+import javax.xml.validation.*; //Validators
+import javax.xml.transform.*; //DOM source classes
 
 //import com.sun.xml.internal.bind.marshaller.NioEscapeHandler;
-import org.w3c.dom.*;               // import DOM
+import org.w3c.dom.*; //DOM
 
 /**
  DOM handler to read XML information, to create this, and to print it
@@ -17,7 +17,6 @@ import org.w3c.dom.*;               // import DOM
  */
 public class DOMMenu
 {
-	
 	/** Document builder */
 	private static DocumentBuilder builder = null;
 	
@@ -38,9 +37,9 @@ public class DOMMenu
 	 */
 	public static void main(String[] args)
 	{
-		// load XML file into "document"
+		//Loads XML file into "document"
 		loadDocument(args[0]);
-		// print staff.xml using DOM methods and XPath queries
+		//Prints staff.xml using DOM methods and XPath queries
 		printNodes();
 	}
 	
@@ -52,15 +51,15 @@ public class DOMMenu
 	{
 		try
 		{
-			// create a document builder
+			//Creates a document builder
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			builder = builderFactory.newDocumentBuilder();
 			
-			// create an XPath expression
+			//Creates an XPath expression
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			path = xpathFactory.newXPath();
 			
-			// parse the document for later searching
+			//Parses the document for later searching
 			document = builder.parse(new File(filename));
 		}
 		catch (Exception exception)

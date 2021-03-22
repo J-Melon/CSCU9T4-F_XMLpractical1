@@ -34,21 +34,21 @@ public class SAXMenu
 			System.out.println("-------------------");
 			System.out.println("parsing " + filename);
 			System.out.println();
-			// get an instance of SAXParserFactory and get an XMLReader from it
+			//Gets an instance of SAXParserFactory and gets an XMLReader from it
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			XMLReader reader = factory.newSAXParser().getXMLReader();
 			
-			// turn off XML validation
+			//Turns off XML validation
 			//reader.setFeature("http://xml.org/sax/features/validation",false);
 			
-			// register the relevant handler with the parser, choosing one of:
+			//Registers the relevant handler with the parser, choosing one of:
 			BasicHandler handler = new MenuHandler();
 			//CountHandler handler = new CountHandler();
 			
 			reader.setContentHandler(handler);
 			reader.setErrorHandler(handler);
 			
-			// parse the given file
+			//Parses the given file
 			InputSource inputSource = new InputSource(filename);
 			reader.parse(inputSource);
 			System.out.println("-------------------");

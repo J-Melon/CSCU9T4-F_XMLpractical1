@@ -1,5 +1,5 @@
-import org.xml.sax.*;				// import SAX classes
-import org.xml.sax.helpers.*;		// import SAX helper classes
+import org.xml.sax.*; //SAX classes
+import org.xml.sax.helpers.*; //SAX helper classes
 
 /**
  SAX event handler to output in basic format.
