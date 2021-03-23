@@ -41,9 +41,9 @@ public class DOMMenu
 	{
 		
 		//Loads XML file into "document"
-		loadDocument(args[0]);
+		loadDocument(args[0]); //small_menu.xml
 		//Validation
-		if (validateDocument(args[1]))
+		if (validateDocument(args[1])) //small_menu.xsd
 		{
 			//Prints staff.xml using DOM methods and XPath queries
 			printNodes();
@@ -93,7 +93,7 @@ public class DOMMenu
 		}
 		catch (SAXParseException e)
 		{
-			System.err.println(e.getLocalizedMessage());
+			System.err.println(e.getLocalizedMessage()); //Prints error message
 			return false;
 		}
 		catch (SAXException | IOException e)
@@ -122,7 +122,7 @@ public class DOMMenu
 			
 			switch (child.getNodeName())
 			{
-				case "description":
+				case "description": //Last type to be prints so gets new line
 					System.out.println(child.getTextContent());
 					break;
 					
