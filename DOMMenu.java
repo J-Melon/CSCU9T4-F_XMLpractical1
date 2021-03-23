@@ -46,7 +46,7 @@ public class DOMMenu
 		if (validateDocument(args[1])) //small_menu.xsd
 		{
 			//Prints staff.xml using DOM methods and XPath queries
-			printNodes();
+			try { printNodes(); } catch (XPathException e) { System.err.println(e.getMessage()); }
 		}
 	}
 	
@@ -98,7 +98,7 @@ public class DOMMenu
 		}
 		catch (SAXException | IOException e)
 		{
-			System.err.println("Error");
+			System.out.println("Could not load schema.");
 			return false;
 		}
 	}
@@ -106,38 +106,23 @@ public class DOMMenu
 	/**
 	 Print nodes using DOM methods and XPath queries.
 	 */
-	private static void printNodes()
+	private static void printNodes() throws XPathExpressionException
 	{
-		final int MAX_NAME_CHAR = 16; //Maximum number of characters in a name
-		final int MAX_PRICE_DIGITS = 6; //Maximum number of digits in a price
-		
 		NodeList menu = document.getElementsByTagName("*");
 		
-		String item = menu.item(0).getNodeName();
-		System.out.println(item);
-		
-		for (int i = 0; i < menu.getLength(); i++)
+		for (int i = 1; i < Math.floorDiv(menu.getLength(), 4) + 1; i++)
 		{
-			Node child = menu.item(i);
+			String name = path.evaluate("/menu/item[" + i + "]/name", document);
+			String price = path.evaluate("/menu/item[" + i + "]/price", document);
+			String description = path.evaluate("/menu/item[" + i + "]/description", document);
 			
-			switch (child.getNodeName())
-			{
-				case "description": //Last type to be prints so gets new line
-					System.out.println(child.getTextContent());
-					break;
-					
-				case "name":
-					System.out.print(child.getTextContent());
-					//Prints variable number of spaces for lining up
-					for (int j = 0; j < MAX_NAME_CHAR - child.getTextContent().length(); j++) { System.out.print(" "); }
-					break;
-					
-				case "price":
-					System.out.print(child.getTextContent());
-					//Prints variable number of spaces for lining up
-					for (int j = 0; j < MAX_PRICE_DIGITS - child.getTextContent().length(); j++) { System.out.print(" "); }
-					break;
-			}
+			System.out.print(name);
+			for (int j = 0; j < 15 - name.length(); j++) { System.out.print(" "); }
+			
+			System.out.print("£" + price);
+			for (int j = 0; j < 6 - price.length(); j++) { System.out.print(" "); }
+			
+			System.out.println(description);
 		}
 	}
 	
