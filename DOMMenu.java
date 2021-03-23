@@ -9,6 +9,8 @@ import javax.xml.transform.*; //DOM source classes
 
 //import com.sun.xml.internal.bind.marshaller.NioEscapeHandler;
 import org.w3c.dom.*; //DOM
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  DOM handler to read XML information, to create this, and to print it
@@ -37,10 +39,15 @@ public class DOMMenu
 	 */
 	public static void main(String[] args)
 	{
+		
 		//Loads XML file into "document"
 		loadDocument(args[0]);
-		//Prints staff.xml using DOM methods and XPath queries
-		printNodes();
+		//Validation
+		if (validateDocument(args[1]))
+		{
+			//Prints staff.xml using DOM methods and XPath queries
+			printNodes();
+		}
 	}
 	
 	/**
@@ -84,10 +91,14 @@ public class DOMMenu
 			validator.validate(new DOMSource(document));
 			return true;
 		}
-		catch (Exception e)
+		catch (SAXParseException e)
 		{
-			System.err.println(e);
-			System.err.println("Could not load schema or validate");
+			System.err.println(e.getLocalizedMessage());
+			return false;
+		}
+		catch (SAXException | IOException e)
+		{
+			System.err.println("Error");
 			return false;
 		}
 	}
@@ -97,11 +108,37 @@ public class DOMMenu
 	 */
 	private static void printNodes()
 	{
-		Node menuItem_1 = document.getFirstChild();
-		Node menuItem_2 = menuItem_1.getFirstChild().getNextSibling();
-		System.out.println("First child is: " + menuItem_1.getNodeName());
-		System.out.println("  Child is: " + menuItem_2.getNodeName());
+		final int MAX_NAME_CHAR = 16; //Maximum number of characters in a name
+		final int MAX_PRICE_DIGITS = 6; //Maximum number of digits in a price
 		
+		NodeList menu = document.getElementsByTagName("*");
+		
+		String item = menu.item(0).getNodeName();
+		System.out.println(item);
+		
+		for (int i = 0; i < menu.getLength(); i++)
+		{
+			Node child = menu.item(i);
+			
+			switch (child.getNodeName())
+			{
+				case "description":
+					System.out.println(child.getTextContent());
+					break;
+					
+				case "name":
+					System.out.print(child.getTextContent());
+					//Prints variable number of spaces for lining up
+					for (int j = 0; j < MAX_NAME_CHAR - child.getTextContent().length(); j++) { System.out.print(" "); }
+					break;
+					
+				case "price":
+					System.out.print(child.getTextContent());
+					//Prints variable number of spaces for lining up
+					for (int j = 0; j < MAX_PRICE_DIGITS - child.getTextContent().length(); j++) { System.out.print(" "); }
+					break;
+			}
+		}
 	}
 	
 	/**
