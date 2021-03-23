@@ -117,7 +117,7 @@ public class DOMMenu
 			String description = path.evaluate("/menu/item[" + i + "]/description", document);
 			
 			System.out.print(name);
-			for (int j = 0; j < 15 - name.length(); j++) { System.out.print(" "); }
+			for (int j = 0; j < 15 - name.length(); j++) { System.out.print(" "); } //For text alignment
 			
 			System.out.print("£" + price);
 			for (int j = 0; j < 6 - price.length(); j++) { System.out.print(" "); }
